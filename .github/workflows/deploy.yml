@@ -1,8 +1,4 @@
-# This is a basic workflow to help you get started with Actions
-
-name: CI
-
-# Controls when the action will run. 
+name: Build & Deploy
 on:
   push:
     branches: [ main ]
