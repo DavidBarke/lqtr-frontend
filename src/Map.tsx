@@ -20,7 +20,7 @@ export function Map(props: MapProps) {
       style={{ height: props.height }}
       center={[51.163, 10.448]}
       zoom={7}
-      scrollWheelZoom={false}
+      scrollWheelZoom={true}
     >
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
