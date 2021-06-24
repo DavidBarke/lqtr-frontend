@@ -1,4 +1,3 @@
-import { circleMarker } from "leaflet";
 import { MapContainer, TileLayer, Marker, Polyline } from "react-leaflet";
 import { LocationPopup } from "./LocationPopup";
 
@@ -11,7 +10,8 @@ export interface LocationRow {
 
 interface MapProps {
   height: string;
-  locations: LocationRow[];
+  location: LocationRow; // Active location
+  locations: LocationRow[]; // All locations
 }
 
 export function Map(props: MapProps) {
@@ -34,13 +34,9 @@ export function Map(props: MapProps) {
           dashArray: [5, 25]
         }}
       />
-      {props.locations.map((row) => {
-        return (
-          <Marker position={[row.lat, row.lon]}>
-            <LocationPopup locationRow={row}/>
-          </Marker>
-        );
-      })}
+      {<Marker position={[props.location.lat, props.location.lon]}>
+            <LocationPopup locationRow={props.location}/>
+          </Marker>}
     </MapContainer>
   );
 }

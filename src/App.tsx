@@ -1,11 +1,13 @@
 import logo from "./logo.svg";
-import "./App.css";
-import {Map, LocationRow} from "./Map";
+import { Map, LocationRow } from "./Map";
+import { Navigation } from "./Navigation";
+import "./Navigation.css";
 import { useEffect, useState } from "react";
 
 
 function App() {
-  const [locations, setLocations] = useState<LocationRow[]>([{lat: 0, lon: 0, time: 0, rowid: 0}]);
+  const [locationIndex, setLocationIndex] = useState(0);
+  const [locations, setLocations] = useState<LocationRow[]>([{ lat: 0, lon: 0, time: 0, rowid: 0 }]);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -18,9 +20,16 @@ function App() {
   });
 
   if (error) {
-    return <div> David's locations could not be fetched! </div>
+    return <div> Locations could not be fetched! </div>
   } else {
-    return <Map height="100%" locations={locations}/>
+    return <div className="fullheight relative">
+      <Navigation
+        locationIndex={locationIndex}
+        maxLocationIndex={locations.length - 1}
+        setLocationIndex={setLocationIndex}
+      />
+      <Map height="100%" locations={locations} location={locations[locationIndex]} />
+    </div>
   }
 }
 
