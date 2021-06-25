@@ -35,8 +35,8 @@ export function Map(props: MapProps) {
         }}
       />
       {<Marker position={[props.location.lat, props.location.lon]}>
-            <LocationPopup locationRow={props.location}/>
-          </Marker>}
+        <LocationPopup locationRow={props.location} />
+      </Marker>}
     </MapContainer>
   );
 }
