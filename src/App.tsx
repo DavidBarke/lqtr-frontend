@@ -14,15 +14,15 @@ function App() {
     fetch("https://davidbarke.com/api/location_ts")
       .then((res) => res.json())
       .then(
-        (res) => setLocations(res),
+        (res) => {
+          setLocations(res);
+          setLocationIndex(res.length - 1);
+        },
         (error) => setError(error)
       );
-  });
+  }, []);
 
-  if (error) {
-    return <div> Locations could not be fetched! </div>
-  } else {
-    return <div className="fullheight relative">
+  return <div className="fullheight relative">
       <Navigation
         locationIndex={locationIndex}
         maxLocationIndex={locations.length - 1}
@@ -30,7 +30,6 @@ function App() {
       />
       <Map height="100%" locations={locations} location={locations[locationIndex]} />
     </div>
-  }
 }
 
 export default App;
