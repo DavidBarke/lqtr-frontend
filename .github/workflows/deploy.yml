@@ -16,5 +16,6 @@ jobs:
           script: |
             cd /srv/lqtr
             git pull origin main
+            npm update
             npm run build
       
